@@ -1,22 +1,31 @@
 import React, { useState, useEffect, UseRef} from "react";
 import {useCameraStore} from './store/camera-store';
+import useLoadingStore from './store/loading-store';
+import LogoLoader from './LogoLoader';
 
 
 import CameraCard from "./CameraCard";
-// import AddButton from "./AddButton";
-// const cameras = [
-//   { id: 1, cameraName: "Entrance Camera", date: "2025-07-07", time: "21:30", threatLevel: "Low" },
-//   { id: 2, cameraName: "Backyard Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium" },
-//   { id: 3, cameraName: "Office Cam", date: "2025-07-07", time: "21:30", threatLevel: "High" },
-//   { id: 4, cameraName: "Lobby Cam", date: "2025-07-07", time: "21:30", threatLevel: "Low" },
-//   { id: 5, cameraName: "Hallway Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium" },
-// ];
+
 
 export default function Dashboard() {
 
-  const [showSection, setShowSection] = useState(true)
+  const [showMain, setShowMain] = useState(true)
+
+  const {showLoading, hideLoading} = useLoadingStore();
+  useEffect(() => {
+    showLoading();
+    setShowSection(false)
+    setShowMain(false)
+    const timer = setTimeout(() => {
+      hideLoading();
+      setShowSection(true)
+      setShowMain(true)
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
   
-  // const [myCameraStreams, setMyCameraStreams] = useState([])
+
+  const [showSection, setShowSection] = useState(true)
 
   const CameraStreams = useCameraStore((state) => state.CameraStreams)
 
@@ -34,26 +43,30 @@ const cameraElement = CameraStreams.map(cam => (
 ))
 
 
-
-  // function addCameraStream () {
-  //   setMyCameraStreams(prevCameraStream => [...prevCameraStream, allcameras[prevCameraStream.length]])
-  // }
-
   function handleShowSection () {
     setShowSection(false)
   }
 
   function addCameraStream () {
-    addToCameraStreams(allcameras[CameraStreams.length])
+    
+    showLoading()
+    setTimeout(() => {
+      addToCameraStreams(allcameras[CameraStreams.length])
+      hideLoading()
+    }, 2000)
   }
 
   function handleClicks () {
     addCameraStream()
     handleShowSection()
   }
+
+
   
   return (
-    <main className="mt-10 bg-gray-800 w-[90vw] h-auto   m-auto rounded-lg shadow shadow-cyan-400/50 mb-10 pb-10 pt-5 xl:w-[95vw]">
+    <>
+    {/* <LogoLoader /> */}
+    {showMain && <main className="mt-10 bg-gray-800 w-[90vw] h-auto   m-auto rounded-lg shadow shadow-cyan-400/50 mb-10 pb-10 pt-5 xl:w-[95vw]">
 <article className="flex justify-between items-center m-5">
     <figure className="flex text-3xl items-center gap-2 ml-12">
     <svg className="h-8 w-8 md:h-8 md:w-8 lg:h-10 lg:w-10 text-cyan-400 "
@@ -68,7 +81,7 @@ const cameraElement = CameraStreams.map(cam => (
     </article>
 
     {showSection && <section className="flex justify-center items-center">
-    <article className="grid place-content-center place-items-center bg-black/50 w-[80vw] h-[70vh] rounded-lg outline outline-cyan-400">
+    <article className="grid place-content-center place-items-center bg-black/50 w-[80vw] h-[70vh] rounded-lg outline outline-cyan-900">
     <svg className="h-20 w-20 lg:h-40 lg:w-40  xl:h-60 xl:w-60 text-cyan-400 " fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -88,6 +101,7 @@ const cameraElement = CameraStreams.map(cam => (
     
       </section>
 
-    </main>
+    </main> }
+    </>
   );
 }
