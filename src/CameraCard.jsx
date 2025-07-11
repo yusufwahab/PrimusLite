@@ -1,6 +1,5 @@
 import React, { useState, useEffect, UseRef} from "react";
 import {useCameraStore} from './store/camera-store';
-import video from "/EcoWatchVid.mp4";
 
 export default function CameraCard({ cameraName, date, time, threatLevel,id }) {
   const threatColors = {
