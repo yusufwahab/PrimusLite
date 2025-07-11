@@ -42,9 +42,9 @@ export default function CameraCard({ cameraName, date, time, threatLevel,id }) {
       </div>
       <div className="p-2 flex justify-between items-center m-2 ">
         <div>
-          <p className="text-[#D1FAE5] text-sm">{date}</p>
-          <p className="text-[#D1FAE5] text-sm">{time}</p>
-          <p className="text-[#D1FAE5] text-sm">{cameraName}</p>
+          <p className="text-[#FFFFFF] text-sm">{date}</p>
+          <p className="text-[#FFFFFF] text-sm">{time}</p>
+          <p className="text-[#FFFFFF] text-sm">{cameraName}</p>
         </div>
 
         <article className="flex flex-col items-center justify-center">
