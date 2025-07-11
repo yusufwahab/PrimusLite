@@ -1,8 +1,4 @@
 @import "tailwindcss";
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
-@import "tailwindcss/components";
-@import "tailwindcss/base";
 
 /* button {
     background-color: #1e3a8a;
@@ -22,6 +18,3 @@
       transform: translateY(-20px);
     }
   } */
-  body {
-    @apply font-barlow;
-  }
