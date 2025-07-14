@@ -1,5 +1,6 @@
 import React, { useState, useEffect, UseRef} from "react";
 import {useCameraStore} from './store/camera-store';
+// import useLoadingStore from "./store/loading-store";
 
 export default function CameraCard({ cameraName, date, time, threatLevel,id }) {
   const threatColors = {
