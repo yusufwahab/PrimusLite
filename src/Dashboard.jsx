@@ -70,6 +70,7 @@ const cameraElement = CameraStreams.map(cam => (
   
   return (
     <>
+    <Header />
     <LogoLoader />
     {showMain && <main className="mt-10 bg-gray-800 w-[90vw] h-auto   m-auto rounded-lg shadow shadow-cyan-400/50 mb-10 pb-10 pt-5 xl:w-[95vw]">
 <article className="flex justify-between items-center m-5">
@@ -119,3 +120,6 @@ const cameraElement = CameraStreams.map(cam => (
     </>
   );
 }
+
+
+
