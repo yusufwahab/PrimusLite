@@ -1,5 +1,5 @@
 import { useState } from "react";
-import primusLogo from './assets/logo-primus.png';
+import primusLogo from './obex-logo.png';
 // import { useNavStore } from "./store/navigation-store";
 import { useNavStore } from "./store/navigation-store";
 
@@ -36,11 +36,11 @@ export default function Header({ addCameraStream }) {
             <img
               src={primusLogo}
               alt="primus logo"
-              className="w-10 h-10 md:w-8 md:h-8 xl:w-10 xl:h-10 cursor-pointer"
+              className="w-10 h-10 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-15 xl:h-15 cursor-pointer"
             />
-            <span className="text-2xl font-bold text-white cursor-pointer ml-2 md:text-[16px] lg:text-[20px]">
-              Primus
-              <span className="text-cyan-400 font-medium font-black">Lite</span>
+            <span className="text-2xl font-bold text-white cursor-pointer ml-2 md:text-[20px] lg:text-[25px] xl:text-[30px]">
+              OBEX
+              <span className="text-cyan-400 font-medium font-black"></span>
             </span>
           </a>
 
