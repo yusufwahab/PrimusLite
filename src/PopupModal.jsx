@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-export default function PopupModal({ ip = "", onSave, onCancel }) {
+export default function PopupModal({ onSave, onCancel }) {
+  const [ipAddress, setIpAddress] = useState("");
   const [zone, setZone] = useState("public");
   const [cameraName, setCameraName] = useState("");
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
+  
 
   function handleSaveClick() {
-    onSave(zone, cameraName, date, time);
+    onSave(ipAddress, zone, cameraName, date, time);
   }
 
   return (
@@ -18,8 +20,8 @@ export default function PopupModal({ ip = "", onSave, onCancel }) {
         <label className="mb-2 block text-sm font-medium text-cyan-900">IP Address</label>
         <input
           type="text"
-          value={ip}
-          readOnly
+          value={ipAddress}
+          onChange={(e) => setIpAddress(e.target.value)}
           className="mb-4 w-full rounded border border-gray-300 bg-gray-100 p-2 text-sm"
         />
 
@@ -52,7 +54,7 @@ export default function PopupModal({ ip = "", onSave, onCancel }) {
           className="mb-4 w-full rounded border border-gray-300 p-2 text-sm dark:bg-zinc-800 dark:text-white"
         />
 
-          <label className="mb-2 block text-sm font-medium text-cyan-900">Date</label>
+          <label className="mb-2 block text-sm font-medium text-cyan-900">Time</label>
           <input
           type="time"
           value={time}

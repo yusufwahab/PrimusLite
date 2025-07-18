@@ -49,11 +49,11 @@ const [selectedCamera, setSelectedCamera] = useState(null);
 //   { id: 5, cameraName: "Hallway Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium" },
 // ];
 const allcameras = [
-  { id: 1, cameraName: "Entrance Camera", date: "2025/07/07", time: "21:30", threatLevel: "Low", url:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera" },
-  { id: 2, cameraName: "Backyard Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium", url:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera" },
-  { id: 3, cameraName: "Office Cam", date: "2025-07-07", time: "21:30", threatLevel: "High", url:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera"},
-  { id: 4, cameraName: "Lobby Cam", date: "2025-07-07", time: "21:30", threatLevel: "Low", url:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera"},
-  { id: 5, cameraName: "Hallway Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium", url:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera" },
+  { id: 1, cameraName: "Entrance Camera", date: "2025/07/07", time: "21:30", threatLevel: "Low", ipAddress:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera" },
+  { id: 2, cameraName: "Backyard Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium", ipAddress:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera" },
+  { id: 3, cameraName: "Office Cam", date: "2025-07-07", time: "21:30", threatLevel: "High", ipAddress:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera"},
+  { id: 4, cameraName: "Lobby Cam", date: "2025-07-07", time: "21:30", threatLevel: "Low", ipAddress:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera"},
+  { id: 5, cameraName: "Hallway Cam", date: "2025-07-07", time: "21:30", threatLevel: "Medium", ipAddress:"https://vdo.ninja/v17/?view=SN9rmgQ&label=PrimusLite_Camera" },
 ];
 
 
@@ -102,7 +102,7 @@ const cameraElement = CameraStreams.map(cam => (
   
   
 
-  function handleModalSave(zone, cameraName, date, time) {
+  function handleModalSave(ipAddress, zone, cameraName, date, time) {
     showLoading();
     setTimeout(() => {
       addToCameraStreams({
@@ -111,6 +111,7 @@ const cameraElement = CameraStreams.map(cam => (
         cameraName: cameraName || selectedCamera.cameraName,
         date: date || selectedCamera.date,
         time: time || selectedCamera.time,
+        ipAddress: ipAddress || selectedCamera.ipAddress
       });
       hideLoading();
       setIsModalOpen(false); // Close modal
@@ -126,7 +127,7 @@ const cameraElement = CameraStreams.map(cam => (
     <LogoLoader />
     {isModalOpen && (
   <PopupModal
-    ip={selectedCamera?.url}
+    // ip={selectedCamera?.ipAddress}
     onSave={handleModalSave}
     onCancel={() => setIsModalOpen(false)}
   />
